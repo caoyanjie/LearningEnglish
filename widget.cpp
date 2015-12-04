@@ -23,7 +23,7 @@ Widget::Widget(QWidget *parent)
     ,xml(xmlPath)
 {
     this->setFixedSize(502, 400);
-    this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
 
     getIniData();       // 获取配置文件数据
