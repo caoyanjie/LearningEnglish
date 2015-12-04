@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/windowClose.png</file>
+        <file>Images/windowCloseHover.png</file>
+        <file>Images/windowMax.png</file>
+        <file>Images/windowMaxHover.png</file>
+        <file>Images/windowMini.png</file>
+        <file>Images/windowMiniHover.png</file>
+        <file>Images/windowNormal.png</file>
+        <file>Images/windowNormalHover.png</file>
+        <file>Images/bg.jpg</file>
+    </qresource>
+</RCC>
