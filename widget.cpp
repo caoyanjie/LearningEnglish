@@ -167,9 +167,11 @@ void Widget::getIniData()
     QStringList children;
     children << "English" << "Comment" << "Times";
 
-    wordsRetry = xml.getChildrenText(xml.RetryElement, children);qDebug() << wordsRetry.size();
-    wordsPass = xml.getChildrenText(xml.PassElement, children);qDebug() << wordsPass.size();
-    wordsHistory = xml.getChildrenText(xml.HistoryElement, children);qDebug() << wordsHistory.size();
+    wordsRetry = xml.getChildrenText(xml.RetryElement, children);
+    wordsPass = xml.getChildrenText(xml.PassElement, children);
+    wordsHistory = xml.getChildrenText(xml.HistoryElement, children);
+
+    wordsIsEmpty = (wordsRetry.length()==0 && wordsPass.length()==0 && wordsHistory.length()==0) ? true : false;
 }
 
 // 初始化部件
@@ -202,7 +204,7 @@ void Widget::initWidgets()
     labCommnet->setAlignment(Qt::AlignTop);
     labWord->setFixedSize(200, 25);
     labCommnet->setFixedSize(200, 100);
-    labCommnet->move(150, 180);
+    labCommnet->move(154, 180);
 
     pbnShow = new QPushButton("提示", this);
     pbnRetry = new QPushButton("retry", this);
@@ -215,6 +217,7 @@ void Widget::initWidgets()
     connect(pbnShow, SIGNAL(clicked()), this, SLOT(showComment()));
     connect(pbnRetry, SIGNAL(clicked()), this, SLOT(retry()));
     connect(pbnPass, SIGNAL(clicked()), this, SLOT(pass()));
+    connect(labCommnet, SIGNAL(linkActivated(QString)), this, SLOT(learnAgain()));
 
     this->setObjectName("main");
     labBg->setObjectName("labBg");
@@ -521,7 +524,7 @@ void Widget::playAnimation()
     else
     {
         labWord->setText("恭喜，已学习完！");
-        labCommnet->setText(" 请添加生词 ^_^ ！");
+        labCommnet->setText(wordsIsEmpty ? "请添加生词 ^_^ ！" : "<a href=#><font size=4 color=red>再来一遍</font></a>");
         currentWordType = Over;
     }
     if (!word.isEmpty())
@@ -538,4 +541,11 @@ void Widget::clearGradualWidget()
 {
     labGradual->deleteLater();
     gradualOpacitty->deleteLater();
+}
+
+// Again
+void Widget::learnAgain()
+{
+    getIniData();       // 获取配置文件数据
+    playAnimation();    // 播放动画
 }

@@ -64,6 +64,7 @@ private:
 
     WordType currentWordType;
     int wordLearnedTimes;
+    bool wordsIsEmpty;
 
     int retryCurrentNum = -1;
     int passCurrentNum = -1;
@@ -81,6 +82,7 @@ private slots:
     void pass();
     void playAnimation();
     void clearGradualWidget();
+    void learnAgain();
 };
 
 #endif // WIDGET_H
