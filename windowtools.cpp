@@ -25,7 +25,7 @@ WindowTools::WindowTools(QWidget *parent) :
     this->setLayout(layout);
 
     connect(tbnWindowClose, SIGNAL(clicked()), parentWidget(), SLOT(close()));
-    connect(tbnWindowMax, SIGNAL(clicked()), this, SLOT(windowSwitchMax()));
+//    connect(tbnWindowMax, SIGNAL(clicked()), this, SLOT(windowSwitchMax()));
     connect(tbnWindowMini, SIGNAL(clicked()), parentWidget(), SLOT(showMinimized()));
 
     tbnWindowClose->setObjectName("close");
